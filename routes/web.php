@@ -1,7 +1,9 @@
 <?php
 
+use App\Livewire\Livewire\FirstComponent;
 use App\Livewire\PostComponent;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Testing\TestComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +16,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',FirstComponent::class)->name('landing');
 
-Route::get('/post',PostComponent::class)->name('post');
