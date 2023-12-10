@@ -1,9 +1,11 @@
 <?php
 
-use App\Livewire\Livewire\FirstComponent;
+use App\Livewire\Dashboard;
 use App\Livewire\PostComponent;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Testing\TestComponent;
+use App\Http\Controllers\TestController;
+use App\Livewire\Livewire\FirstComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +18,6 @@ use Illuminate\Testing\TestComponent;
 |
 */
 
-Route::get('/',FirstComponent::class)->name('landing');
+Route::get('/', Dashboard::class)->name('dashboard');
 
+// Route::get('/',[TestController::class,'landing'])->name('landing');
