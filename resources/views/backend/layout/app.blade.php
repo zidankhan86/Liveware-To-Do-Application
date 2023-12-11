@@ -9,7 +9,6 @@
     </head>
     <body class="sb-nav-fixed">
 
-{{ $slot }}
 
 
             @include('backend.fixed.header')
@@ -23,8 +22,8 @@
 
                 <main>
 
-
-                   @yield('backend')
+                    {{ $slot }}
+                   @yield('backend.layout')
 
 
                 </main>
