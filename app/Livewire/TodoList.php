@@ -5,25 +5,33 @@ namespace App\Livewire;
 use App\Models\Todo;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
 class TodoList extends Component
 {
+    use WithFileUploads;
     use WithPagination;
     public $name;
     public $search;
     public $editId = null;
+    public $image;
 
     public function TodoCreate(){
        $validate = $this->validate([
-        "name"=>'required'
+        "name"=>'required',
+        "image"=>'required'
        ]);
-
+       $image =null;
+    if($this->image){
+    $image= $this->image->store('image','public');
+}
         Todo::create([
-        "name"=>$this->name
+        "name"=>$this->name,
+        "image"=>$image
         ]);
 
-        $this->reset('name');
+        $this->reset('name','image');
         session()->flash('success','To do created!!!');
     }
 

@@ -13,6 +13,15 @@
             @error('name')
                 <span class="text-danger">{{$message}}</span>
             @enderror
+
+           <br> <div class="form-group">
+        <label>Enter Image</label><br>
+        <input type="file" wire:model="image" class="form-control-file">
+            </div>
+    @error('image')
+        <span class="text-danger">{{$message}}</span>
+    @enderror
+
             <br>
             <button type="submit" class="btn btn-primary">Create Todo</button><br><br><br>
         </form>
