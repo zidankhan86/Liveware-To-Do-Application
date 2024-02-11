@@ -45,11 +45,19 @@
             <input type="checkbox" wire:click="checkbox({{ $list->id }})" {{ $list->completed ? 'checked' : '' }}>
             {{ $list->name }}
         </td>
-        <td>
+        <!-- <td>
             <button href="" class="btn btn-success"><i class="fas fa-edit"></i></button>
             <button wire:click="delete({{ $list->id }})" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+        </td> -->
+        <td>
+            @if ($editId === $list->id)
+                <button wire:click="update({{ $list->id }})" class="btn btn-primary btn-sm">Save</button>
+                <button wire:click="cancelEdit" class="btn btn-secondary btn-sm">Cancel</button>
+            @else
+                <button wire:click="edit({{ $list->id }})" class="btn btn-secondary btn-sm">Edit</button>
+                <button wire:click="delete({{ $list->id }})" class="btn btn-danger btn-sm">Delete</button>
+            @endif
         </td>
-        
         <td>{{ $list->created_at->format('D/M/Y') }}</td>
     </tr>
         @endforeach

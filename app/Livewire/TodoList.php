@@ -12,6 +12,8 @@ class TodoList extends Component
     use WithPagination;
     public $name;
     public $search;
+    public $editId = null;
+
     public function TodoCreate(){
        $validate = $this->validate([
         "name"=>'required'
@@ -39,7 +41,22 @@ class TodoList extends Component
         $checked->save();
 
     }
+
+    public function edit($id)
+    {
+        $this->editId = $id;
+        $this->name = Todo::findOrFail($id)->name;
+    }
     
+    public function update($id)
+    {
+        $this->validate(['name' => 'required']);
+        $todo = Todo::findOrFail($id);
+        $todo->name = $this->name;
+        $todo->save();
+        $this->reset(['name', 'editId']);
+        session()->flash('success', 'Todo updated!');
+    }
     
     public function render()
     {
